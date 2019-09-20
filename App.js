@@ -15,6 +15,7 @@ export default class App extends Component {
 
   state = { ...initialState }
 
+  //Adiciona um dígito
   addDigito = n => {
 
     const clearDisplay = this.state.displayValue === '0' || this.state.clearDisplay
@@ -25,10 +26,11 @@ export default class App extends Component {
     const displayValue = currentValue + n
     this.setState({ displayValue, clearDisplay: false })
 
-    if (n != '.') {
+    if (n !== '.') {
       const newValue = parseFloat(displayValue)
       const values = [...this.state.values]
       values[this.state.current] = newValue
+      this.setState({values})
     }
   }
 
@@ -40,13 +42,13 @@ export default class App extends Component {
   //Seta operação
   setOperacao = operacao => {
     if (this.state.current === 0) {
-      this.setState({ operation, current: 1, clearDisplay: true })
+      this.setState({ operacao, current: 1, clearDisplay: true })
     } else {
-      const equals = operation === '='
+      const equals = operacao === '='
       const values = [...this.state.values]
       try {
-        values[0] = eval(`${values[0]} ${this.state.operation} ${values[1]}`)
-      } catch{
+        values[0] = eval(`${values[0]} ${this.state.operacao} ${values[1]}`)
+      } catch (e) {
         values[0] = this.state.values[0]
       }
 
