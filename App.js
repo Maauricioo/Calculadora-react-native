@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Button from './src/components/Button'
+import Display from './src/components/Display'
 
 export default class App extends Component {
+
+  state = {
+    displayValue: '0'
+  }
+
+
   render() {
     return (
       <View style={styles.container}>
+        <Display value={this.state.displayValue}/>
         <View style={styles.buttons}>
           <Button label='AC' />
           <Button label='/' />
