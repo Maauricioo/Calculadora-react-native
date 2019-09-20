@@ -32,6 +32,7 @@ export default class App extends Component {
     }
   }
 
+  //Limpa memória
   clearMemoria = () => {
     this.setState({ ...initialState })
   }
