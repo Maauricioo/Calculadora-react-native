@@ -16,11 +16,11 @@ export default class App extends Component {
   state = { ...initialState }
 
   addDigito = n => {
-    if (n === '.' && this.state.displayValue.includes('.')) {
-      return
-    }
 
     const clearDisplay = this.state.displayValue === '0' || this.state.clearDisplay
+    if (n === '.' && !clearDisplay && this.state.displayValue.includes('.')) {
+      return
+    }
     const currentValue = clearDisplay ? '' : this.state.displayValue
     const displayValue = currentValue + n
     this.setState({ displayValue, clearDisplay: false })
@@ -52,7 +52,7 @@ export default class App extends Component {
 
       values[1] = 0
       this.setState({
-        displayValue: values[0],
+        displayValue: `${values[0]}`,
         operacao: equals ? null : operacao,
         current: equals ? 0 : 1,
         clearDisplay: !equals,
